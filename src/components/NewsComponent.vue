@@ -33,10 +33,12 @@ export default {
   },
   methods: {
     async getData() {
-         axios.get('https://newsapi.org/v2/top-headlines', {
+         axios.get('https://newsapi.org/v2/everything', {
             params: {
                sources: 'techcrunch',
-               apiKey: '4e583ae4810445e58a404664eb280235'
+               apiKey: '4e583ae4810445e58a404664eb280235',
+               from: moment(new Date()).format('YYYY-MM-DD'),
+               to: moment(new Date()).format('YYYY-MM-DD')
             }
         })
         .then(response => {
