@@ -33,17 +33,17 @@ export default {
   },
   methods: {
     async getData() {
-         axios.get('https://newsapi.org/v2/everything', {
+         axios.get('http://api.mediastack.com/v1/news', {
             params: {
                sources: 'techcrunch',
-               apiKey: '4e583ae4810445e58a404664eb280235',
-               from: moment(new Date()).format('YYYY-MM-DD'),
-               to: moment(new Date()).format('YYYY-MM-DD')
+               access_key: '71dcb1992a01fe6594052b9bf5810ab5',
+               countries: 'us',
+               limit: 5
             }
         })
         .then(response => {
-            this.articles = response.data.articles.map(article => {
-              return { ...article, publishDate: moment(article.publishedAt).format('MM/DD/YYYY h:mm A') };
+            this.articles = response.data.data.map(article => {
+              return { ...article, publishDate: moment(article.published_at).format('MM/DD/YYYY h:mm A') };
             });
 
             this.isLoading = false;
