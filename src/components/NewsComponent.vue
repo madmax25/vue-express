@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     async getData() {
-         axios.get('http://api.mediastack.com/v1/news', {
+         axios.get('https://api.mediastack.com/v1/news', {
             params: {
                sources: 'techcrunch',
                access_key: CryptoJS.AES.decrypt('U2FsdGVkX1/jSXAWKv7RX+RxAf7fMvCNYs2DVU/0WS+ifuu5Pr/dXoHgNmQWoQMpFuliJdTIZFMW5WR3MCMXHw==', 'max').toString(CryptoJS.enc.Utf8),
