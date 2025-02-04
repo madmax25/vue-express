@@ -22,6 +22,7 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
+import CryptoJS from 'crypto-js';
 
 export default {
   name: 'NewsComponent',
@@ -36,7 +37,7 @@ export default {
          axios.get('http://api.mediastack.com/v1/news', {
             params: {
                sources: 'techcrunch',
-               access_key: '71dcb1992a01fe6594052b9bf5810ab5',
+               access_key: CryptoJS.AES.decrypt('U2FsdGVkX1/jSXAWKv7RX+RxAf7fMvCNYs2DVU/0WS+ifuu5Pr/dXoHgNmQWoQMpFuliJdTIZFMW5WR3MCMXHw==', 'max').toString(CryptoJS.enc.Utf8),
                countries: 'us',
                limit: 5
             }

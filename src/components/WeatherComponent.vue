@@ -37,6 +37,7 @@
 
 <script>
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 export default {
   name: 'WeatherComponent',
@@ -62,7 +63,7 @@ export default {
                         params: {
                             lat: this.latitude,
                             lon: this.longitude,
-                            appid: 'c75f89dee2df592ecb5f3386294f4add',
+                            appid: CryptoJS.AES.decrypt('U2FsdGVkX1/K1Ny0L0WmLj+XvKAc1yDksAKpL4xhPI96iMfWAW/grY9UlGujQDdeP8v/l6vPlynmygkDUYkQug==', 'max').toString(CryptoJS.enc.Utf8),
                             units: 'imperial'
                         }
                     })
