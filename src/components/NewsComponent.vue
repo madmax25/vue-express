@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ article.title }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ article.author }} | {{ article.publishDate }}</h6>
-                <p class="card-text">{{ article.description }}</p>
+                <p class="card-text">{{ article.parsedArticleDescription }}</p>
                 <a target="_blank" class="card-link" :href="article.url">View article</a>
             </div>
         </div>
@@ -23,6 +23,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import CryptoJS from 'crypto-js';
+import parse from 'node-html-parser';
 
 export default {
   name: 'NewsComponent',
@@ -44,7 +45,11 @@ export default {
         })
         .then(response => {
             this.articles = response.data.data.map(article => {
-              return { ...article, publishDate: moment(article.published_at).format('MM/DD/YYYY h:mm A') };
+              return {
+                 ...article,
+                 parsedArticleDescription: parse(article.description).textContent,
+                 publishDate: moment(article.published_at).format('MM/DD/YYYY h:mm A')
+              };
             });
 
             this.isLoading = false;
