@@ -7,11 +7,22 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const allowedOrigins = ['http://localhost:8080', 'https://vue-express-two.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
 // Serve static files from the 'dist' directory (built Vue app)
 app.use(express.static(path.join(__dirname, '../dist')));
-   app.use(cors({
-       origin: 'http://localhost:8080'
-}));
+app.use(cors(corsOptions));
+
 
 app.get('/api/news', (req, res) => {
    axios.get('https://newsapi.org/v2/top-headlines', {
