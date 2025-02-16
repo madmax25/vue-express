@@ -4,9 +4,9 @@
             Loading weather...
         </div>
         <div v-if="isError">
-            Error loading weather. Check back later.
+            Error loading weather component.
         </div>
-        <div v-if="!isLoading">
+        <div v-if="!isLoading && !isError">
             <h1>
                 Weather
             </h1>

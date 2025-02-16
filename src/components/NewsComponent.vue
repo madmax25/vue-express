@@ -3,7 +3,10 @@
         <div v-if="isLoading">
             Loading TechCrunch articles...
         </div>
-        <div v-if="!isLoading">
+        <div v-if="isError">
+            Error loading news component.
+        </div>
+        <div v-if="!isLoading && !isError">
             <h1>
                 News
             </h1>
@@ -35,6 +38,10 @@ export default {
         axios.get('http://localhost:3000/api/news').then(response => {
             this.articles = response.data;
             this.isLoading = false;
+        }).catch(e => {
+            this.isLoading = false;
+            this.isError = true;
+            console.log(e);
         });
     }
   },
