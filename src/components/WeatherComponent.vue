@@ -3,6 +3,9 @@
         <div v-if="isLoading">
             Loading weather...
         </div>
+        <div v-if="isError">
+            Error loading weather. Check back later.
+        </div>
         <div v-if="!isLoading">
             <h1>
                 Weather
@@ -37,7 +40,6 @@
 
 <script>
 import axios from 'axios';
-import CryptoJS from 'crypto-js';
 
 export default {
   name: 'WeatherComponent',
@@ -59,12 +61,10 @@ export default {
             this.latitude = position.coords.latitude;
             this.longitude = position.coords.longitude;
 
-             axios.get('https://api.openweathermap.org/data/2.5/weather', {
+             axios.get('http://localhost:3000/api/weather', {
                         params: {
-                            lat: this.latitude,
-                            lon: this.longitude,
-                            appid: CryptoJS.AES.decrypt('U2FsdGVkX1/K1Ny0L0WmLj+XvKAc1yDksAKpL4xhPI96iMfWAW/grY9UlGujQDdeP8v/l6vPlynmygkDUYkQug==', 'max').toString(CryptoJS.enc.Utf8),
-                            units: 'imperial'
+                            latitude: this.latitude,
+                            longitude: this.longitude
                         }
                     })
                     .then(response => {
@@ -91,12 +91,14 @@ export default {
                         this.isLoading = false;
                     })
                     .catch(e => {
-                         console.log(e);
+                         error(e);
                     });
         };
 
         const error = (err) => {
-            console.log(err)
+            this.isLoading = false;
+            this.isError = true;
+            console.log(err);
         };
 
         // This will open permission popup

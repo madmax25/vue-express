@@ -21,9 +21,6 @@
 
 <script>
 import axios from 'axios';
-import moment from 'moment';
-import CryptoJS from 'crypto-js';
-import parse from 'node-html-parser';
 
 export default {
   name: 'NewsComponent',
@@ -35,23 +32,8 @@ export default {
   },
   methods: {
     async getData() {
-         axios.get('https://api.mediastack.com/v1/news', {
-            params: {
-               sources: 'techcrunch',
-               access_key: CryptoJS.AES.decrypt('U2FsdGVkX1/jSXAWKv7RX+RxAf7fMvCNYs2DVU/0WS+ifuu5Pr/dXoHgNmQWoQMpFuliJdTIZFMW5WR3MCMXHw==', 'max').toString(CryptoJS.enc.Utf8),
-               countries: 'us',
-               limit: 5
-            }
-        })
-        .then(response => {
-            this.articles = response.data.data.map(article => {
-              return {
-                 ...article,
-                 parsedArticleDescription: parse(article.description).textContent,
-                 publishDate: moment(article.published_at).format('MM/DD/YYYY h:mm A')
-              };
-            });
-
+        axios.get('http://localhost:3000/api/news').then(response => {
+            this.articles = response.data;
             this.isLoading = false;
         });
     }
