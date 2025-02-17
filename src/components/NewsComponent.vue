@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getData() {
-        axios.get('http://localhost:3000/api/news').then(response => {
+        axios.get('https://news-weather-api.vercel.app/api/news').then(response => {
             this.articles = response.data;
             this.isLoading = false;
         }).catch(e => {

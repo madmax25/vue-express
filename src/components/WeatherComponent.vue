@@ -61,7 +61,7 @@ export default {
             this.latitude = position.coords.latitude;
             this.longitude = position.coords.longitude;
 
-             axios.get('http://localhost:3000/api/weather', {
+             axios.get('https://news-weather-api.vercel.app/api/weather', {
                         params: {
                             latitude: this.latitude,
                             longitude: this.longitude
