@@ -5,23 +5,11 @@ const moment = require('moment');
 const { parse } = require('node-html-parser');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 3000;
+require("dotenv").config();
 
-const allowedOrigins = ['http://localhost:8080', 'https://vue-express-two.vercel.app:443'];
+app.use(cors());
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-
-// Serve static files from the 'dist' directory (built Vue app)
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use(cors(corsOptions));
+app.use(express.static(path.join(__dirname, "./public", "../public")));
 
 
 app.get('/api/news', (req, res) => {
@@ -59,8 +47,16 @@ app.get('/api/weather', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-});
+const start = () => {
+  try {
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+        console.log(`Server listening on port ${port}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
+start();
 module.exports = app;
