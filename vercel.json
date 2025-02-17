@@ -6,19 +6,19 @@
       "use": "@vercel/node"
     },
     {
-      "src": "/dist/index.html",
+      "src": "/vercel/output/index.html",
       "use": "@vercel/static"
     },
     {
-      "src": "/dist/favicon.ico",
+      "src": "/vercel/output/favicon.ico",
       "use": "@vercel/static"
     },
     {
-      "src": "/dist/css/*.css",
+      "src": "/vercel/output/css/*.css",
       "use": "@vercel/static"
     },
     {
-      "src": "/dist/js/*.js",
+      "src": "/vercel/output/js/*.js",
       "use": "@vercel/static"
     }
   ],
