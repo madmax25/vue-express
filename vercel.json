@@ -9,15 +9,6 @@
           "value": "*"
         }
       ]
-    },
-    {
-      "source": "https://vue-express-two.vercel.app/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
     }
   ]
 }
