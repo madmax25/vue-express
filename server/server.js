@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const allowedOrigins = ['http://localhost:8080', 'https://vue-express-two.vercel.app'];
+const allowedOrigins = ['http://localhost:8080', 'https://vue-express-two.vercel.app:443'];
 
 const corsOptions = {
   origin: function (origin, callback) {
