@@ -24,19 +24,29 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
+import { parse } from 'node-html-parser';
 
 export default {
   name: 'NewsComponent',
   data() {
     return {
       isLoading: true,
+      isError: false,
       articles: []
     };
   },
   methods: {
     async getData() {
         axios.get('https://news-weather-api.vercel.app/api/news').then(response => {
-            this.articles = response.data;
+            const data = response.data.map(article => {
+              return {
+                 ...article,
+                 parsedArticleDescription: parse(article.description).textContent,
+                 publishDate: moment.utc(article.publishedAt).local().format('MM/DD/YYYY h:mm A')
+              };
+            });
+            this.articles = data;
             this.isLoading = false;
         }).catch(e => {
             this.isLoading = false;

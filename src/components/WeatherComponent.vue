@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      isError: false,
       cityName: '',
       temperature: '',
       feelsLike: '',
