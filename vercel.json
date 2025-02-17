@@ -1,17 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "./server/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "dist/index.html"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -23,7 +11,7 @@
       ]
     },
     {
-      "source": "/vercel_app_domain_name/(.*)",
+      "source": "https://vue-express-two.vercel.app/(.*)",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
