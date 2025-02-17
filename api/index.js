@@ -9,7 +9,7 @@ require("dotenv").config();
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "./public", "../public")));
+app.use(express.static(__dirname + "/public/"));
 
 
 app.get('/api/news', (req, res) => {

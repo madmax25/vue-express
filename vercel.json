@@ -4,22 +4,6 @@
     {
       "src": "/api/index.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "/dist/index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/dist/favicon.ico",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/dist/css/*.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "/dist/js/*.js",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
